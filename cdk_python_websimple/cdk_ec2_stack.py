@@ -14,11 +14,11 @@ class CdkEc2Stack(Stack):
         # Define custom synthesizer
         synthesizer = DefaultStackSynthesizer(
             file_assets_bucket_name="cf-templates-iw9mos24h2jo-us-east-1",
-            cloud_formation_execution_role= "arn:aws:iam::172067734210:role/LabRole",
-            deploy_role_arn="arn:aws:iam::172067734210:role/LabRole",
-            file_asset_publishing_role_arn="arn:aws:iam::172067734210:role/LabRole",
-            deploy_role_external_id="arn:aws:iam::172067734210:role/LabRole",
-            image_asset_publishing_role_arn="arn:aws:iam::172067734210:role/LabRole",
+            cloud_formation_execution_role= "arn:aws:iam::455070195064:role/LabRole",
+            deploy_role_arn="arn:aws:iam::455070195064:role/LabRole",
+            file_asset_publishing_role_arn="arn:aws:iam::455070195064:role/LabRole",
+        #deploy_role_external_id="arn:aws:iam::455070195064:role/LabRole",
+            image_asset_publishing_role_arn="arn:aws:iam::455070195064:role/LabRole",
         )
 
         # Pass the synthesizer to the Stack constructor
@@ -27,15 +27,16 @@ class CdkEc2Stack(Stack):
         # Use existing VPC
         vpc = ec2.Vpc.from_lookup(
             self, 'vpc',
-            vpc_id='vpc-00efc54137e6a9ef2'
+            vpc_id='vpc-0d0c5ca91370cea3e'
         )
 
         sec_group = ec2.SecurityGroup.from_security_group_id(
-            self, 'launch-wizard-1', 'sg-0c77723568ab75889')
+            self, 'launch-wizard-1', 'sg-024e41ecf3040afb7')
 
+        
         key_pair = ec2.KeyPair.from_key_pair_name(self, "ExistingKeyPair", "vockey")
 
-        lab_role = iam.Role.from_role_arn(self, "LabRole", "arn:aws:iam::172067734210:role/LabRole")
+        lab_role = iam.Role.from_role_arn(self, "LabRole", "arn:aws:iam::455070195064:role/LabRole")
 
         user_data = ec2.UserData.for_linux()
         user_data.add_commands(
@@ -49,7 +50,7 @@ class CdkEc2Stack(Stack):
             self,
             "mv-cdk",
             instance_type=ec2.InstanceType("t2.micro"),
-            machine_image=ec2.MachineImage.generic_linux({"us-east-1": "ami-0aa28dab1f2852040"}),
+            machine_image=ec2.MachineImage.latest_amazon_linux2(),
             vpc=vpc,
             vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
             security_group=sec_group,
