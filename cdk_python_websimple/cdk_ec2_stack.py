@@ -41,8 +41,8 @@ class CdkEc2Stack(Stack):
         user_data.add_commands(
             "apt update",
             "apt install -y apache2 git",
-            "git clone https://github.com/flauts/websimple.git /var/www/html/websimple",
-            "git clone https://github.com/flauts/webplantilla.git /var/www/html/webplantilla"
+            "git clone https://github.com/Ronal-Jesus-Condor-Blas/websimple.git /var/www/html/websimple",
+            "git clone https://github.com/Ronal-Jesus-Condor-Blas/webplantilla.git /var/www/html/webplantilla"
         )
 
         instance = ec2.Instance(
