@@ -17,7 +17,7 @@ class CdkEc2Stack(Stack):
             cloud_formation_execution_role= "arn:aws:iam::455070195064:role/LabRole",
             deploy_role_arn="arn:aws:iam::455070195064:role/LabRole",
             file_asset_publishing_role_arn="arn:aws:iam::455070195064:role/LabRole",
-        #deploy_role_external_id="arn:aws:iam::455070195064:role/LabRole",
+            deploy_role_external_id="arn:aws:iam::455070195064:role/LabRole",
             image_asset_publishing_role_arn="arn:aws:iam::455070195064:role/LabRole",
         )
 
