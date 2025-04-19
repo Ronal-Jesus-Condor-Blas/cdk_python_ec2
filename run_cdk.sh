@@ -13,5 +13,3 @@ export CDK_NEW_BOOTSTRAP=1
 
 # Synthesize or deploy the CDK stack
 cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess aws://455070195064/us-east-1  # or 'cdk deploy' if you want to deploy
-cdk deploy 
-
